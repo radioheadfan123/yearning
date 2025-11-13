@@ -1,11 +1,9 @@
-// pages/api/notify.js
 import { Resend } from "resend";
+import { NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") return res.status(405).end();
-
+export async function POST() {
   try {
     const { data, error } = await resend.emails.send({
       from: process.env.NOTIFY_FROM,
@@ -16,12 +14,12 @@ export default async function handler(req, res) {
 
     if (error) {
       console.error(error);
-      return res.status(500).json({ ok: false });
+      return NextResponse.json({ ok: false }, { status: 500 });
     }
 
-    return res.status(200).json({ ok: true, data });
+    return NextResponse.json({ ok: true, data }, { status: 200 });
   } catch (e) {
     console.error(e);
-    return res.status(500).json({ ok: false });
+    return NextResponse.json({ ok: false }, { status: 500 });
   }
 }
