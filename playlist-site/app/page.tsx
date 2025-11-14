@@ -58,14 +58,21 @@ useEffect(() => {
 }, []);
 
 
-  const handleNotifyClick = async () => {
-    try {
-      await fetch("/api/notify", { method: "POST" });
-      alert("i'll see you soon.");
-    } catch (e) {
-      alert("error sending notification");
-    }
-  };
+const handleNotifyClick = async () => {
+  try {
+    await fetch("/api/notify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sessionId: sessionIdRef.current,
+      }),
+    });
+    alert("i'll see you soon");
+  } catch (e) {
+    alert("error sending notification");
+  }
+};
+
 
   return (
     <>

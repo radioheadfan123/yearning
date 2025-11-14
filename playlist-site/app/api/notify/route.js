@@ -1,50 +1,46 @@
-import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
+import { query } from "../../../lib/db";
 
-export async function POST() {
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function POST(request) {
   try {
-    const apiKey = process.env.RESEND_API_KEY;
+    const headers = request.headers;
 
-    if (!apiKey) {
-      console.error("Missing RESEND_API_KEY");
-      return NextResponse.json(
-        { ok: false, error: "Missing RESEND_API_KEY" },
-        { status: 500 }
-      );
+    const ip =
+      headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      headers.get("x-real-ip") ||
+      "unknown";
+
+    let sessionId = null;
+    try {
+      const body = await request.json();
+      sessionId = body?.sessionId ?? null;
+    } catch {
+      // no body, ignore
     }
 
-    if (!process.env.NOTIFY_FROM || !process.env.NOTIFY_TO) {
-      console.error("Missing NOTIFY_FROM or NOTIFY_TO");
-      return NextResponse.json(
-        { ok: false, error: "Missing NOTIFY_FROM or NOTIFY_TO" },
-        { status: 500 }
-      );
-    }
+    // log click into notifications table
+    await query(
+      `
+      INSERT INTO notifications (ip, session_id, clicked_at)
+      VALUES ($1, $2, (NOW() AT TIME ZONE 'UTC' AT TIME ZONE 'America/Chicago'))
+      `,
+      [ip, sessionId]
+    );
 
-    const resend = new Resend(apiKey);
-
-    const { data, error } = await resend.emails.send({
+    // send email via Resend
+    await resend.emails.send({
       from: process.env.NOTIFY_FROM,
       to: process.env.NOTIFY_TO,
-      subject: "someone visited your playlist page",
-      html: "<p>They clicked the button.</p>",
+      subject: "someone visited your playlist",
+      text: `The button was clicked.\nIP: ${ip}\nSession: ${sessionId ?? "unknown"}`,
     });
 
-    if (error) {
-      console.error("Resend error:", error);
-      return NextResponse.json(
-        { ok: false, error: String(error) },
-        { status: 500 }
-      );
-    }
-
-    console.log("Email sent:", data);
-    return NextResponse.json({ ok: true }, { status: 200 });
-  } catch (e) {
-    console.error("Notify route error:", e);
-    return NextResponse.json(
-      { ok: false, error: "Server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("notify error:", err);
+    return NextResponse.json({ ok: false, error: "notify failed" }, { status: 500 });
   }
 }
