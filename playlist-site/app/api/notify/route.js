@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { query } from "../../../lib/db";
+import { query } from "../../lib/db";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
