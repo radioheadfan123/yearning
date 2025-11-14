@@ -18,7 +18,8 @@ export async function POST(request) {
     await query(
       `
       INSERT INTO sessions (session_id, ip, user_agent, started_at)
-      VALUES ($1, $2, $3, NOW())
+      VALUES ($1, $2, $3, (NOW() AT TIME ZONE 'UTC' AT TIME ZONE 'America/Chicago')
+)
     `,
       [sessionId, ip, userAgent]
     );

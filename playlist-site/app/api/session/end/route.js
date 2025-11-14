@@ -16,7 +16,8 @@ export async function POST(request) {
     await query(
       `
       UPDATE sessions
-      SET ended_at = NOW(), duration_ms = $2
+      SET ended_at = (NOW() AT TIME ZONE 'UTC' AT TIME ZONE 'America/Chicago')
+, duration_ms = $2
       WHERE session_id = $1
     `,
       [sessionId, durationMs ?? null]
