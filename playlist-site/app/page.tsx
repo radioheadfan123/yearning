@@ -271,7 +271,7 @@ you’re allowed to choose yourself. i’m not waiting, and i’m not putting my
                   color: "#e7daf7",
                 }}
               >
-but if someday, after you’ve taken all the time and space you needed, you no longer want to be alone… tell me. it won't matter where i am or who i'm with, you let me know and i'll be waiting on the steps of our home with the porch lights on, your clothes still in my hamper, your makeup in my bathroom drawer, and your toothbrush still laying beside mine.
+but if someday, after you’ve taken all the time and space you needed, you no longer want to be alone… tell me. it won't matter where i am or who i'm with, you let me know and i'll be waiting on the steps of our home with the porch lights on, your clothes still in my hamper, your makeup in my bathroom drawer, and your toothbrush still laying beside mine. this page will stay alive for however long, so it'll never be too late.
               </p>
             </div>
 
