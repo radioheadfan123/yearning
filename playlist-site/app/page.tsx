@@ -42,33 +42,26 @@ export default function Home() {
     }
   };
 
-  useEffect(() => {
-    startSession();
+useEffect(() => {
+  startSession();
 
-    const handleBeforeUnload = () => {
-      endSession();
-    };
+  const handleBeforeUnload = () => {
+    endSession();
+  };
 
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "hidden") {
-        endSession();
-      }
-    };
+  window.addEventListener("beforeunload", handleBeforeUnload);
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+  return () => {
+    window.removeEventListener("beforeunload", handleBeforeUnload);
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handleNotifyClick = async () => {
     try {
       await fetch("/api/notify", { method: "POST" });
-      alert("i saw that you were here. thank you.");
+      alert("i'll see you soon.");
     } catch (e) {
       alert("error sending notification");
     }
