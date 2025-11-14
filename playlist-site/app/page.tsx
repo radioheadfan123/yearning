@@ -59,6 +59,12 @@ useEffect(() => {
 
 
 const handleNotifyClick = async () => {
+  const confirmed = window.confirm(
+    "this will notify me directly, are you sure?"
+  );
+
+  if (!confirmed) return;
+
   try {
     await fetch("/api/notify", {
       method: "POST",
@@ -67,11 +73,13 @@ const handleNotifyClick = async () => {
         sessionId: sessionIdRef.current,
       }),
     });
-    alert("i'll see you soon");
-  } catch (e) {
-    alert("error sending notification");
+
+    alert("i’ll see you soon.");
+  } catch (err) {
+    alert("something went wrong");
   }
 };
+
 
 
   return (
