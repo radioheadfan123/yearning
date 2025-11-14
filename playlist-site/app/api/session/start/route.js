@@ -1,25 +1,31 @@
-import { Resend } from "resend";
+// app/api/session/start/route.js
 import { NextResponse } from "next/server";
+import { query } from "../../../lib/db";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-export async function POST() {
+export async function POST(request) {
   try {
-    const { data, error } = await resend.emails.send({
-      from: process.env.NOTIFY_FROM,
-      to: process.env.NOTIFY_TO,
-      subject: "Notify button clicked",
-      html: "<p>Someone clicked the notify button on your playlist page.</p>",
-    });
+    const headers = request.headers;
 
-    if (error) {
-      console.error(error);
-      return NextResponse.json({ ok: false }, { status: 500 });
-    }
+    const ip =
+      headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      headers.get("x-real-ip") ||
+      "unknown";
 
-    return NextResponse.json({ ok: true, data }, { status: 200 });
-  } catch (e) {
-    console.error(e);
-    return NextResponse.json({ ok: false }, { status: 500 });
+    const userAgent = headers.get("user-agent") || null;
+
+    const sessionId = crypto.randomUUID();
+
+    await query(
+      `
+      INSERT INTO sessions (session_id, ip, user_agent, started_at)
+      VALUES ($1, $2, $3, NOW())
+    `,
+      [sessionId, ip, userAgent]
+    );
+
+    return NextResponse.json({ ok: true, sessionId });
+  } catch (err) {
+    console.error("session/start error:", err);
+    return NextResponse.json({ ok: false, error: "db error" }, { status: 500 });
   }
 }
