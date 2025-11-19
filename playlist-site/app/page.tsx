@@ -263,7 +263,7 @@ const handleNotifyClick = async () => {
                   color: "#e7daf7",
                 }}
               >
-i made this for you the way people leave the lights on in a room they’ve already walked out of. not to call you back, not to pull you from the quiet you asked for. just to keep it warm, a place you could return to if you ever wanted. a little trace of me so you won’t forget i was here. 
+i made this for you the way people leave the lights on in a room they’ve already walked out of. not to call you back, not to pull you from the quiet you asked for. just to keep it warm, a place you could return to if you ever wanted to.
               </p>
 
               <p
@@ -286,7 +286,7 @@ you’re allowed to choose yourself. i’m not waiting, and i’m not putting my
                   color: "#e7daf7",
                 }}
               >
-but if someday, after you’ve taken all the time and space you needed, you no longer want to be alone… tell me. it won't matter where i am or who i'm with, you let me know and i'll be waiting on the steps of our home with the porch lights on, your clothes still in my hamper, your makeup in my bathroom drawer, and your toothbrush still laying beside mine. this page will stay alive for however long, so it'll never be too late.
+but if someday, after you’ve taken all the time and space you needed, and i still remain there somewhere. years from now or not, i'm married with kids or not, let me know and i'd have to think about it.
               </p>
             </div>
 
