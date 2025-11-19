@@ -263,7 +263,7 @@ const handleNotifyClick = async () => {
                   color: "#e7daf7",
                 }}
               >
-i made this for you as a goodbye to you and to us, for my sake. not to call you back, not to pull you from the quiet you asked for, not to ask for you to stay or to change your mind.
+i made this for you as a goodbye to you and to us. not to call you back, not to pull you from the quiet you asked for, not to ask for you to stay or to change your mind.
               </p>
 
               <p
@@ -286,7 +286,7 @@ you’re allowed to choose yourself. i won't wait around, and i won't put my lif
                   color: "#e7daf7",
                 }}
               >
-but if someday, after you’ve taken all the time and space you needed, and i still remain there somewhere. years from now or not, i'm married with kids or not. let me know and i might just have to think about it.
+but if someday, after you’ve taken all the time and space you needed, and i still remain there somewhere. years from now, whether i'm married with kids or not. let me know and i might just have to think about it.
               </p>
             </div>
 
@@ -479,7 +479,7 @@ but if someday, after you’ve taken all the time and space you needed, and i st
                     marginTop: "0.1rem",
                   }}
                 >
-                  click here if you ever want to come home
+                  click if you want me to call you
                 </span>
               </button>
             </div>
