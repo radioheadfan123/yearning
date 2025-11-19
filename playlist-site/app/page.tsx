@@ -263,7 +263,7 @@ const handleNotifyClick = async () => {
                   color: "#e7daf7",
                 }}
               >
-i made this for you the way people leave the lights on in a room they’ve already walked out of. not to call you back, not to pull you from the quiet you asked for. just to keep it warm, a place you could return to if you ever wanted to.
+i made this for you as a goodbye. not to call you back, not to pull you from the quiet you asked for, not to ask for you to stay or to change your mind.
               </p>
 
               <p
@@ -275,7 +275,7 @@ i made this for you the way people leave the lights on in a room they’ve alrea
                   color: "#e7daf7",
                 }}
               >
-you’re allowed to choose yourself. i’m not waiting, and i’m not putting my life on pause for a maybe. i’ll learn to walk forward without checking over my shoulder for you. and maybe, with enough time, you’ll fade into a distant memory, and i’ll unlearn the things i once knew about you by heart to make room for someone else.
+you’re allowed to choose yourself. i’m not waiting, and i’m not putting my life on pause for a maybe. i’ll learn to walk forward without checking over my shoulder for you. and maybe, with enough time, i’ll unlearn the things i once knew about you by heart to make room for someone else.
               </p>
 
               <p
@@ -286,7 +286,7 @@ you’re allowed to choose yourself. i’m not waiting, and i’m not putting my
                   color: "#e7daf7",
                 }}
               >
-but if someday, after you’ve taken all the time and space you needed, and i still remain there somewhere. years from now or not, i'm married with kids or not, let me know and i'd have to think about it.
+but if someday, after you’ve taken all the time and space you needed, and i still remain there somewhere. years from now or not, i'm married with kids or not. let me know and i'd have to think about it.
               </p>
             </div>
 
